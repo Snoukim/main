@@ -3,6 +3,9 @@ import webbrowser
 
 bot = telebot.TeleBot('6392178713:AAHWZiUsSw3qkDgag7QaP_UOxPok8jBQh_I')
 
+bot.message_handler(chat_types=['photo'])
+def get_photo(message):
+    bot.reply_to(message, 'Норм тема!')
 
 @bot.message_handler(commands=['site', 'website'])
 def site(message):
