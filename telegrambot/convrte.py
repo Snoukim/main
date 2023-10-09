@@ -50,12 +50,12 @@ def callback(call):
 
 def my_currency(message):
     try:
-        values = message.text.upper().strip('/')
+        values = message.text.upper().split('/')
         res = currency.convert(amount, values[0], values[1])
         bot.send_message(message.chat.id, f'Получаеться: {round(res, 2)}. Можете заново вписать сумму')
         bot.register_next_step_handler(message, summa)
     except Exception:
-        bot.send_message(message.chat.id, 'Что-то не так. Введите пару значений через слэш')
+        bot.send_message(message.chat.id, 'Что-то не так. Впишите значение заново')
         bot.register_next_step_handler(message, my_currency)
 
 
