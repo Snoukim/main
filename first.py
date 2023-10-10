@@ -54,7 +54,7 @@ def parsing():
                  f"price: {price}\n"
                  f"gallery:{gallery}\n"]
 
-        with open(r"first.py.txt", "aa") as file:
+        with open(r"first.py.txt", "a") as file:
             for line in lines:
                 file.write(line + '\n')
 

@@ -1,12 +1,15 @@
 import requests
 from selenium import webdriver
-from bs4 import BeautifulSoup
+# from bs4 import BeautifulSoup
 import time
-import json
+# import json
+
 
 def get_sourse_html(url):
+    options = webdriver.ChromeOptions()
+    options.add_argument("start-maximized")
+    driver = webdriver.Chrome(options=options)
 
-    driver = webdriver.Chrome()
     def fetch(url, params):
         headers = params["headers"]
         body = params["body"]
@@ -15,8 +18,6 @@ def get_sourse_html(url):
             return requests.post(url, headers=headers, data=body)
         if method == "GET":
             return requests.get(url, headers=headers)
-
-
 
     products = fetch(
         "https://store.tildacdn.com/api/getproductslist/?storepartuid=580177428100&recid=253090920&c=1696252624823&getparts=true&getoptions=true&slice=1&filters%5Bcharact%3A921409%5D%5B0%5D=%D0%94%D0%BB%D1%8F%20%D0%BD%D1%8C%D0%BE%D0%B3%D0%BE&filters%5Bquantity%5D=y&filters%5Bstorepartuid%5D%5B0%5D=%D0%9E%D0%B4%D1%8F%D0%B3&filters%5Bbrand%5D%5B0%5D=LEVI%27S&filters%5Bbrand%5D%5B1%5D=M%2BRC%20NOIR&sort%5Bcreated%5D=desc&size=12",
@@ -35,7 +36,7 @@ def get_sourse_html(url):
             },
             "body": "products",
             "method": "GET"
-        });
+        })
     print(products.headers)
     print(products.json())
     try:
@@ -46,8 +47,6 @@ def get_sourse_html(url):
     finally:
         driver.close()
         driver.quit()
-
-
 
 
 def main():
